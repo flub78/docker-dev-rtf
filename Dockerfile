@@ -6,6 +6,7 @@
 
 # FROM ubuntu:14.04
 FROM ubuntu
+
 MAINTAINER Frédéric Peignot frederic.peignot@free.fr
 
 RUN apt-get update \
@@ -21,8 +22,13 @@ RUN apt-get update \
 	libffi-dev \
 	libtcltk-ruby \
 	libx11-dev \
-	tcl-dev \
-	tk-dev
+	tcl-dev tk-dev \
+	apache2 \
+	libmysqlclient-dev
+	
+#	mysql-server \
+#	mysql-client \
+
 	
 RUN gem update --system
 RUN gem install watir
@@ -30,6 +36,7 @@ RUN gem install minitest
 RUN gem install minitest-ci
 RUN gem install dbi
 RUN gem install tk
+RUN gem install dbd-mysql
 	
 RUN mkdir /var/run/sshd
 
