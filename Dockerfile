@@ -1,6 +1,8 @@
-# Minimal ansible ctarget container
+# Ruby development and test container
 #
 # docker run -ti --name=dev-rtf -v $HOME/.ssh/:/root/.ssh/  flub78/dev-rtf /bin/bash
+# docker run -ti --name=dev-rtf -e DISPLAY=$DISPLAY -v $HOME/.ssh/:/root/.ssh/ -v /tmp/.X11-unix:/tmp/.X11-unix flub78/dev-rtf /bin/bash
+
 
 # FROM ubuntu:14.04
 FROM ubuntu
@@ -17,13 +19,17 @@ RUN apt-get update \
 	rake \
 	ruby-dev \
 	libffi-dev \
-	libtcltk-ruby
+	libtcltk-ruby \
+	libx11-dev \
+	tcl-dev \
+	tk-dev
 	
 RUN gem update --system
 RUN gem install watir
 RUN gem install minitest
 RUN gem install minitest-ci
 RUN gem install dbi
+RUN gem install tk
 	
 RUN mkdir /var/run/sshd
 
@@ -43,6 +49,7 @@ RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
 
 RUN useradd -m dev
 # USER dev
+ENV HOME /home/dev
 
 RUN (cd /home/dev; git clone https://github.com/flub78/rtf.git)
 
