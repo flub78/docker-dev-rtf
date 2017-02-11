@@ -1,16 +1,12 @@
 # docker-dev-rtf
 Dockerfile to create a RTF development environment
 
-RTF is a ruby test environment. https://github.com/flub78/rtf.git
+RTF is a ruby test environment. https://github.com/flub78/rtf.git. Ruby and miscelaneous Ruby development modules are installed in the container as well than the project git workspace. There is support to access a mysql database from the container, but no server is installed (use another docker container).
 
-ssh-keyscan github.com >> ~/.ssh/known_hosts
+There is no support for Ruby on Rail, but it may change.
+
 
 ## Execution
 
-To start the container:
-docker run -ti --name=dev-rtf -v $HOME/.ssh/:/root/.ssh/  flub78/dev-rtf /bin/bash
-docker run -ti --name=dev-rtf -e DISPLAY=$DISPLAY -v $HOME/.ssh/:/root/.ssh/ -v /tmp/.X11-unix:/tmp/.X11-unix flub78/dev-rtf /bin/bash
-
-To stop it:
-docker rm -f dev-rtf
+You can execute and adapt the provided shortcut scripts, to build, start stop or execute the container.
 

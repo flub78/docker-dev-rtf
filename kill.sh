@@ -1,2 +1,2 @@
 #!/bin/sh
-docker rm dev-rtf
+docker rm -f dev-rtf

@@ -1,8 +1,5 @@
 # Ruby development and test container
 #
-# docker run -ti --name=dev-rtf -v $HOME/.ssh/:/root/.ssh/  flub78/dev-rtf /bin/bash
-# docker run -ti --name=dev-rtf -e DISPLAY=$DISPLAY -v $HOME/.ssh/:/root/.ssh/ -v /tmp/.X11-unix:/tmp/.X11-unix flub78/dev-rtf /bin/bash
-
 
 # FROM ubuntu:14.04
 FROM ubuntu
@@ -24,11 +21,10 @@ RUN apt-get update \
 	libx11-dev \
 	tcl-dev tk-dev \
 	apache2 \
-	libmysqlclient-dev
+	libmysqlclient-dev \
+	mysql-client
 	
-#	mysql-server \
-#	mysql-client \
-
+#	mysql-server
 	
 RUN gem update --system
 RUN gem install watir
@@ -60,5 +56,8 @@ ENV HOME /home/dev
 
 RUN (cd /home/dev; git clone https://github.com/flub78/rtf.git)
 
-CMD ["/usr/sbin/sshd", "-D"]
+# CMD ["/usr/sbin/sshd", "-D"]
+# CMD ["/usr/sbin/apache2ctl", "-D FOREGROUND"]
+ENTRYPOINT service ssh restart  && \
+/usr/sbin/apache2ctl -D FOREGROUND
 
