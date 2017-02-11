@@ -23,9 +23,8 @@ RUN apt-get update \
 	apache2 \
 	libmysqlclient-dev \
 	mysql-client \
-	inetutils-ping
-	
-#	mysql-server
+	inetutils-ping \
+	gedit
 	
 RUN gem update --system
 RUN gem install watir
