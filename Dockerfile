@@ -22,7 +22,8 @@ RUN apt-get update \
 	tcl-dev tk-dev \
 	apache2 \
 	libmysqlclient-dev \
-	mysql-client
+	mysql-client \
+	inetutils-ping
 	
 #	mysql-server
 	
