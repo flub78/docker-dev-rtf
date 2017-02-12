@@ -26,5 +26,7 @@ mysql -h"$MYSQL_PORT_3306_TCP_ADDR" -P"$MYSQL_PORT_3306_TCP_PORT" -uroot -p"$MYS
 
 mysql -h mysql -P 3306 -uroot -ptoto
 
+mysql -h 172.17.0.2 -P 3306 -uroot -ptoto
+
 
 

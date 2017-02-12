@@ -24,7 +24,8 @@ RUN apt-get update \
 	libmysqlclient-dev \
 	mysql-client \
 	inetutils-ping \
-	gedit
+	gedit \
+	sudo
 	
 RUN gem update --system
 RUN gem install watir
@@ -50,8 +51,8 @@ RUN touch /root/.ssh/known_hosts
 RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
 
 
-RUN useradd -m dev
-# USER dev
+RUN useradd -m dev && echo "dev:dev" | chpasswd && adduser dev sudo
+
 ENV HOME /home/dev
 
 RUN (cd /home/dev; git clone https://github.com/flub78/rtf.git)
@@ -60,4 +61,6 @@ RUN (cd /home/dev; git clone https://github.com/flub78/rtf.git)
 # CMD ["/usr/sbin/apache2ctl", "-D FOREGROUND"]
 ENTRYPOINT service ssh restart  && \
 /usr/sbin/apache2ctl -D FOREGROUND
+
+# USER dev
 
